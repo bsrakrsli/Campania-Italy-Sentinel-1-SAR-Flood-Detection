@@ -1,99 +1,178 @@
 # Campania-Italy-Sentinel-1-SAR-Flood-Detection
-# 🌊 Sentinel-1 SAR Flood Detection Using Google Earth Engine
+# 🔥 Wildfire Damage Assessment Using Multi-Sensor Remote Sensing and Random Forest
 
-A remote sensing project for flood mapping using Sentinel-1 Synthetic Aperture Radar (SAR) imagery and change detection techniques implemented in Google Earth Engine.
-
----
-
-## 📌 Project Overview
-
-This project investigates the 31 March 2023 flood event along the Daugava River in Latvia using Sentinel-1 C-band SAR data.
-
-Two unsupervised SAR-based change detection approaches were implemented and compared against the Copernicus Emergency Management Service (CEMS) flood reference map.
-
-The project demonstrates how SAR imagery can be used for rapid flood extent estimation under all-weather and day/night imaging conditions.
+A Google Earth Engine project for wildfire damage assessment using Sentinel-1 SAR, Sentinel-2 multispectral imagery, spectral indices, and Random Forest classification.
 
 ---
 
-## 🎯 Objectives
+# 📖 Project Overview
 
-- Detect flooded areas using Sentinel-1 SAR imagery
-- Compare dual- and single-polarization SAR approaches
-- Estimate flood extent (ha)
-- Evaluate the consistency of both methods with Copernicus EMS
-- Demonstrate an operational SAR workflow in Google Earth Engine
+This project analyzes the EMSR830 wildfire in Campania, Italy by integrating optical and radar satellite imagery within Google Earth Engine.
 
----
+Two independent wildfire mapping approaches were implemented and compared:
 
-## 📍 Study Area
+- dNBR-based burn severity analysis
+- Supervised Random Forest classification
 
-**Location:** Daugava River, Latvia
-
-**Flood Event:** 31 March 2023
-
-Reference Dataset:
-
-- Copernicus Emergency Management Service (CEMS)
+Unlike traditional optical-only workflows, this project also incorporates Sentinel-1 SAR data to improve burned area discrimination by combining radar backscatter information with multispectral features.
 
 ---
 
-## 🛰️ Data
+# 🎯 Objectives
 
-| Dataset | Description |
-|----------|-------------|
-| Sentinel-1 GRD | C-band SAR imagery |
-| VV Polarization | Single-polarization analysis |
-| VV + VH Polarizations | Dual-polarization analysis |
-| Copernicus EMS | Reference flood extent |
-
----
-
-## ⚙️ Methodology
-
-Two independent flood detection methods were implemented.
-
-### Method 1 — Dual Polarization
-
-- VV Difference (ΔVV)
-- VH Difference (ΔVH)
-- Histogram-based thresholding
-- Flood mask generation
-
-### Method 2 — Single Polarization
-
-- VV Change Index (CI)
-
-\[
-CI=\frac{Post-Pre}{Post+Pre}
-\]
-
-- Histogram analysis
-- Threshold selection
-- Flood mask generation
-
-Both outputs were converted into flooded area (hectares) and compared with Copernicus EMS.
+- Detect wildfire-affected areas
+- Produce burn severity maps using dNBR
+- Generate land cover classification using Random Forest
+- Integrate Sentinel-1 SAR and Sentinel-2 imagery
+- Compare burned area estimates from different approaches
+- Evaluate classification performance using accuracy metrics
 
 ---
 
-## 📊 Results
+# 📍 Study Area
 
-| Method | Estimated Flood Area |
-|---------|----------------------|
-| Copernicus EMS | ~1007 ha |
-| Dual Polarization | ~15640 ha |
-| Change Index | ~1766 ha |
+**Location:** Campania, Italy
 
-The VV Change Index produced a flood extent considerably closer to the Copernicus reference, while the dual-polarization method tended to overestimate flooded regions.
+**Event:** EMSR830 Wildfire (2025)
 
 ---
 
-## 🛠️ Technologies Used
+# 🛰️ Data
+
+### Sentinel-2
+
+- RGB bands
+- SWIR bands
+- NDVI
+- NBR
+- NDMI
+- NBR2
+
+### Sentinel-1
+
+- VV
+- VH
+- VV/VH Ratio
+
+---
+
+# Methodology
+
+The workflow consists of two complementary wildfire assessment methods.
+
+## Method 1 — Burn Severity Mapping
+
+- Cloud masking
+- Pre-fire composite
+- Post-fire composite
+- NBR calculation
+- dNBR computation
+- Burn severity classification
+- Burned area estimation
+- Burn severity statistics
+
+---
+
+## Method 2 — Random Forest Classification
+
+Training samples:
+
+- Burned Area
+- Vegetation
+- Urban
+- Bare Soil
+
+Input features include:
+
+- Sentinel-2 spectral bands
+- Spectral indices
+- Sentinel-1 VV
+- Sentinel-1 VH
+- VV/VH ratio
+
+The Random Forest model classifies the study area into four land cover classes and computes burned area statistics.
+
+---
+
+# Workflow
+
+![Workflow](images/workflow.png)
+
+---
+
+# Results
+
+## Burn Severity (dNBR)
+
+![dNBR](images/dnbr.png)
+
+---
+
+## Burn Severity Classes
+
+![Burn Severity](images/burn_severity.png)
+
+---
+
+## Conservative Burned Area
+
+![Burned Area](images/burned_area.png)
+
+---
+
+## Random Forest Classification
+
+![RF](images/random_forest.png)
+
+---
+
+## Burned Area from Random Forest
+
+![RF Burned](images/rf_burned.png)
+
+---
+
+## Histograms & Charts
+
+- dNBR Histogram
+- Burn Severity Area Chart
+- Random Forest Histogram
+- Training Sample Distribution
+- Burned Area Comparison
+
+---
+
+# Machine Learning
+
+Algorithm:
+
+- Random Forest
+
+Training Classes
+
+- Burned
+- Vegetation
+- Urban
+- Bare Soil
+
+Performance Metrics
+
+- Overall Accuracy
+- Kappa Coefficient
+- Producer Accuracy
+- User Accuracy
+- Variable Importance
+
+---
+
+# Technologies
 
 - Google Earth Engine
 - JavaScript
 - Sentinel-1 SAR
+- Sentinel-2
+- Random Forest
 - Remote Sensing
-- Change Detection
 - GIS
 
 ---
