@@ -94,43 +94,6 @@ The Random Forest model classifies the study area into four land cover classes a
 
 ---
 
-# Workflow
-
-![Workflow](images/workflow.png)
-
----
-
-# Results
-
-## Burn Severity (dNBR)
-
-![dNBR](images/dnbr.png)
-
----
-
-## Burn Severity Classes
-
-![Burn Severity](images/burn_severity.png)
-
----
-
-## Conservative Burned Area
-
-![Burned Area](images/burned_area.png)
-
----
-
-## Random Forest Classification
-
-![RF](images/random_forest.png)
-
----
-
-## Burned Area from Random Forest
-
-![RF Burned](images/rf_burned.png)
-
----
 
 ## Histograms & Charts
 
